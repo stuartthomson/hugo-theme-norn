@@ -1,6 +1,16 @@
 {{ define "main" }}
 <div>
-  <h1 class="title">{{ .Site.Title }}</h1>
-  Hi, I'm Stuart. Welcome to my blog! <a href="https://github.com/stuartthomson">Here's my github profile.</a>
+  <h1 style="text-align: center;" class="title">{{ .Site.Title }}</h1>
+  <p style="text-align: center;">
+    Hi, I'm Stuart. Welcome to my blog! <a href="https://github.com/stuartthomson">Here's my github profile.</a>
+  </p>
 </div>
+
+{{range where .Site.Pages "Type" "posts"}}
+<h2 style="text-align: center;"><a href="{{ .RelPermalink }}">{{.Title}}</a></h2>
+<p style="text-align: center;">
+  {{ partial "metadata.html" . }}
+</p>
+<a class="summary" href="{{ .RelPermalink }}">{{.Summary}}...</a>
+{{- end -}}
 {{ end }}
